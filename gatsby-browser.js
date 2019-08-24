@@ -1,7 +1,36 @@
-/**
- * Implement Gatsby's Browser APIs in this file.
- *
- * See: https://www.gatsbyjs.org/docs/browser-apis/
- */
+// Wrap the root element in the Mui ThemeProvider adn inject the theme at the root of the tree
 
-// You can delete this file if you're not using it
+import React from 'react'
+import {
+  createMuiTheme,
+  responsiveFontSizes,
+  ThemeProvider,
+  CssBaseline,
+} from '@material-ui/core/styles'
+
+let theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#2196f3',
+    },
+    secondary: {
+      main: '#00b0ff',
+    },
+    text: {
+      secondary: '#ffffff',
+    },
+  },
+})
+
+theme = responsiveFontSizes(theme)
+
+const wrappedRootElement = ({ element }) => {
+  return (
+    <ThemeProvider theme="theme">
+      <CssBaseline />
+      {element}
+    </ThemeProvider>
+  )
+}
+
+export default wrappedRootElement
